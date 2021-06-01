@@ -13,7 +13,7 @@ class MessageTest extends TestCase
     public function testSend()
     {
         $messageBusStub = new class implements MessageBusInterface {
-            public TestDataProvider $message;
+            // public TestDataProvider $message;
 
             public function dispatch($message, array $stamps = []): Envelope
             {
@@ -24,13 +24,13 @@ class MessageTest extends TestCase
 
         $message = new Message($messageBusStub);
 
-        $testDataProvider = new TestDataProvider();
-        $testDataProvider->setName('Unit');
-        $testDataProvider->setIdent(132456);
+                $testDataProvider = new TestDataProvider();
+                $testDataProvider->setName('Unit');
+                $testDataProvider->setIdent(132456);
 
-        $message->send($testDataProvider);
+                $message->send($testDataProvider);
 
-        self::assertSame($messageBusStub->message->getIdent(), $testDataProvider->getIdent());
-        self::assertSame($messageBusStub->message->getName(), $testDataProvider->getName());
-    }
+                self::assertSame($messageBusStub->message->getIdent(), $testDataProvider->getIdent());
+                self::assertSame($messageBusStub->message->getName(), $testDataProvider->getName());
+           }
 }
