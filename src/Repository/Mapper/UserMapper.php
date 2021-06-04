@@ -19,4 +19,9 @@ class UserMapper implements UserMapperInterface
 
         return $userDataProvider;
     }
+    public function mapToGameEntity(UserDataProvider $userDataProvider):User
+    {
+        $user = new User();
+        return $user;
+    }
 }

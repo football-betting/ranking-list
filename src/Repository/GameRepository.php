@@ -39,7 +39,7 @@ class GameRepository extends ServiceEntityRepository implements GameRepositoryIn
     {
         $game = $this->findOneBy(['match_id' => $matchId]);
         if($game instanceof Game){
-            return $this->gameMapper->mapToUserDataProvider($game);
+            return $this->gameMapper->mapToGameDataProvider($game);
         }
         return null;
     }
@@ -52,7 +52,7 @@ class GameRepository extends ServiceEntityRepository implements GameRepositoryIn
         $matchList = [];
         foreach ($listOfMatchEntities as $game) {
             if ($game instanceof Game) {
-                $matchList[] = $this->gameMapper->mapToUserDataProvider($game);
+                $matchList[] = $this->gameMapper->mapToGameDataProvider($game);
             }
         }
         return $matchList;

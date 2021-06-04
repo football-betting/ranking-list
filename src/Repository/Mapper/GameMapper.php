@@ -10,10 +10,16 @@ use App\Entity\Game;
 class GameMapper implements GameMapperInterface
 {
 
-    public function mapToUserDataProvider(Game $user):GameDataProvider
+    public function mapToGameDataProvider(Game $user):GameDataProvider
     {
         $gameDataProvider = new GameDataProvider();
 
         return $gameDataProvider;
+    }
+
+    public function mapToGameEntity(GameDataProvider $gameDataProvider):Game
+    {
+        $game = new Game();
+        return $game;
     }
 }

@@ -12,4 +12,6 @@ interface UserMapperInterface
      * @return \App\DataTransferObject\UserDataProvider
      */
     public function mapToUserDataProvider(User $user): UserDataProvider;
+
+    public function mapToGameEntity(UserDataProvider $userDataProvider):User;
 }

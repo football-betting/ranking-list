@@ -7,5 +7,7 @@ use App\Entity\Game;
 
 interface GameMapperInterface
 {
-    public function mapToUserDataProvider(Game $user): GameDataProvider;
+    public function mapToGameDataProvider(Game $user): GameDataProvider;
+
+    public function mapToGameEntity(GameDataProvider $gameDataProvider):Game;
 }
