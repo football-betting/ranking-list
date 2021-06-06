@@ -9,7 +9,7 @@ namespace App\Repository;
 use App\DataTransferObject\UserDataProvider;
 use App\Repository\Mapper\UserMapper;
 
-class UserWriteManager
+class UserWriteManager implements UserWriteManagerInterface
 {
 
     /**

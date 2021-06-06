@@ -8,7 +8,7 @@ namespace App\Repository;
 use App\DataTransferObject\GameDataProvider;
 use App\Repository\Mapper\GameMapper;
 
-class GameWriteManager
+class GameWriteManager implements GameWriteManagerInterface
 {
     /**
      * @var \Doctrine\ORM\EntityManagerInterface $objectManager
