@@ -25,9 +25,14 @@ class GameRepository extends ServiceEntityRepository implements GameRepositoryIn
      */
     private $gameMapper;
 
-    public function __construct(ManagerRegistry $registry, string $entityClass, GameMapperInterface $gameMapper)
+    /**
+     * GameRepository constructor.
+     * @param \Doctrine\Persistence\ManagerRegistry $registry
+     * @param \App\Repository\Mapper\GameMapperInterface $gameMapper
+     */
+    public function __construct(ManagerRegistry $registry, GameMapperInterface $gameMapper)
     {
-        parent::__construct($registry, $entityClass);
+        parent::__construct($registry, Game::class);
         $this->gameMapper = $gameMapper;
     }
 

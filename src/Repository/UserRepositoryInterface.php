@@ -23,5 +23,7 @@ interface UserRepositoryInterface
     /**
      * @return UserDataProvider[]
      */
-    public function getAllUser(): array;
+    public function getAllUserOrderedByScore(): array;
+
+    public function getWinnerOfTheDay(): ?UserDataProvider;
 }

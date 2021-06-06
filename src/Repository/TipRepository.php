@@ -24,9 +24,9 @@ class TipRepository extends ServiceEntityRepository implements TipRepositoryInte
      */
     private $tipMapper;
 
-    public function __construct(ManagerRegistry $registry, string $entityClass, TipMapperInterface $tipMapper)
+    public function __construct(ManagerRegistry $registry, TipMapperInterface $tipMapper)
     {
-        parent::__construct($registry, $entityClass);
+        parent::__construct($registry, Tip::class);
         $this->tipMapper = $tipMapper;
     }
 

@@ -17,7 +17,13 @@ final class UserDataProvider extends \Xervice\DataProvider\Business\Model\DataPr
     protected $position;
 
     /** @var int */
+    protected $positionDaily;
+
+    /** @var int */
     protected $scoreSum;
+
+    /** @var int */
+    protected $scoreDaily;
 
     /** @var \App\DataTransferObject\TipDataProvider */
     protected $tips;
@@ -149,6 +155,47 @@ final class UserDataProvider extends \Xervice\DataProvider\Business\Model\DataPr
     /**
      * @return int
      */
+    public function getPositionDaily(): int
+    {
+        return $this->positionDaily;
+    }
+
+
+    /**
+     * @param int $positionDaily
+     * @return UserDataProvider
+     */
+    public function setPositionDaily(int $positionDaily)
+    {
+        $this->positionDaily = $positionDaily;
+
+        return $this;
+    }
+
+
+    /**
+     * @return UserDataProvider
+     */
+    public function unsetPositionDaily()
+    {
+        $this->positionDaily = null;
+
+        return $this;
+    }
+
+
+    /**
+     * @return bool
+     */
+    public function hasPositionDaily()
+    {
+        return ($this->positionDaily !== null && $this->positionDaily !== []);
+    }
+
+
+    /**
+     * @return int
+     */
     public function getScoreSum(): int
     {
         return $this->scoreSum;
@@ -184,6 +231,47 @@ final class UserDataProvider extends \Xervice\DataProvider\Business\Model\DataPr
     public function hasScoreSum()
     {
         return ($this->scoreSum !== null && $this->scoreSum !== []);
+    }
+
+
+    /**
+     * @return int
+     */
+    public function getScoreDaily(): int
+    {
+        return $this->scoreDaily;
+    }
+
+
+    /**
+     * @param int $scoreDaily
+     * @return UserDataProvider
+     */
+    public function setScoreDaily(int $scoreDaily)
+    {
+        $this->scoreDaily = $scoreDaily;
+
+        return $this;
+    }
+
+
+    /**
+     * @return UserDataProvider
+     */
+    public function unsetScoreDaily()
+    {
+        $this->scoreDaily = null;
+
+        return $this;
+    }
+
+
+    /**
+     * @return bool
+     */
+    public function hasScoreDaily()
+    {
+        return ($this->scoreDaily !== null && $this->scoreDaily !== []);
     }
 
 
@@ -264,9 +352,29 @@ final class UserDataProvider extends \Xervice\DataProvider\Business\Model\DataPr
             'is_dataprovider' => false,
             'isCamelCase' => false,
           ),
+          'positionDaily' =>
+          array (
+            'name' => 'positionDaily',
+            'allownull' => false,
+            'default' => '',
+            'type' => 'int',
+            'is_collection' => false,
+            'is_dataprovider' => false,
+            'isCamelCase' => false,
+          ),
           'scoreSum' =>
           array (
             'name' => 'scoreSum',
+            'allownull' => false,
+            'default' => '',
+            'type' => 'int',
+            'is_collection' => false,
+            'is_dataprovider' => false,
+            'isCamelCase' => false,
+          ),
+          'scoreDaily' =>
+          array (
+            'name' => 'scoreDaily',
             'allownull' => false,
             'default' => '',
             'type' => 'int',

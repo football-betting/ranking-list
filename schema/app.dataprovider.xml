@@ -9,7 +9,9 @@
         <DataElement name="ident" type="int"/>
         <DataElement name="name" type="string"/>
         <DataElement name="position" type="int"/>
+        <DataElement name="positionDaily" type="int"/>
         <DataElement name="scoreSum" type="int"/>
+        <DataElement name="scoreDaily" type="int"/>
         <DataElement name="tips" type="Tip"/>
     </DataProvider>
 
