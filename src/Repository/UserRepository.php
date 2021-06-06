@@ -24,9 +24,9 @@ class UserRepository extends ServiceEntityRepository implements UserRepositoryIn
      */
     private $userMapper;
 
-    public function __construct(ManagerRegistry $registry, string $entityClass, UserMapperInterface $userMapper)
+    public function __construct(ManagerRegistry $registry, UserMapperInterface $userMapper)
     {
-        parent::__construct($registry, $entityClass);
+        parent::__construct($registry, User::class);
         $this->userMapper = $userMapper;
     }
 
@@ -46,9 +46,14 @@ class UserRepository extends ServiceEntityRepository implements UserRepositoryIn
     /**
      * @return UserDataProvider[]
      */
-    public function getAllUser():array
+    public function getAllUserOrderedByScore():array
     {
-        $userList = $this->findAll();
+        $userList = $this->createQueryBuilder('p')
+        ->orderBy('p.scoreSum', 'DESC')
+        ->getQuery()
+        ->getArrayResult();
+
+
         $userDataProviderList = [];
 
         foreach ($userList as $user){
@@ -57,5 +62,20 @@ class UserRepository extends ServiceEntityRepository implements UserRepositoryIn
             }
         }
         return $userDataProviderList;
+    }
+
+    /**
+     * @return \App\DataTransferObject\UserDataProvider|null
+     */
+    public function getWinnerOfTheDay(): ?UserDataProvider
+    {
+        $userList = $this->createQueryBuilder('p')
+            ->orderBy('p.scoreSum', 'DESC')
+            ->getQuery()
+            ->getArrayResult();
+        if($userList[0] instanceof User) {
+            return $this->userMapper->mapToUserDataProvider($userList[0]);
+        }
+        return null;
     }
 }

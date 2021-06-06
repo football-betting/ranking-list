@@ -1,5 +1,5 @@
 controllers:
-    resource: ../../src/Controller/
+    resource: ../../src/Frontend/Communication/Controller/
     type: annotation
 
 kernel:

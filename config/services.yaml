@@ -25,7 +25,7 @@ services:
     # controllers are imported separately to make sure services can be injected
     # as action arguments even if you don't extend any base controller class
     App\Controller\:
-        resource: '../src/Controller/'
+        resource: '../src/Frontend/Communication/Controller/'
         tags: ['controller.service_arguments']
 
     # add more service definitions when explicit configuration is needed
@@ -40,3 +40,4 @@ services:
 
     App\MessageHandler\MyMessageHandler:
         tags: [messenger.message_handler]
+

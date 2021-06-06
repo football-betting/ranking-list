@@ -1,5 +1,5 @@
 <?php
-
+declare(strict_types=1);
 namespace App\Repository;
 
 
@@ -23,5 +23,7 @@ interface UserRepositoryInterface
     /**
      * @return UserDataProvider[]
      */
-    public function getAllUser(): array;
+    public function getAllUserOrderedByScore(): array;
+
+    public function getWinnerOfTheDay(): ?UserDataProvider;
 }

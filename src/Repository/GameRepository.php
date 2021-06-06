@@ -25,9 +25,14 @@ class GameRepository extends ServiceEntityRepository implements GameRepositoryIn
      */
     private $gameMapper;
 
-    public function __construct(ManagerRegistry $registry, string $entityClass, GameMapperInterface $gameMapper)
+    /**
+     * GameRepository constructor.
+     * @param \Doctrine\Persistence\ManagerRegistry $registry
+     * @param \App\Repository\Mapper\GameMapperInterface $gameMapper
+     */
+    public function __construct(ManagerRegistry $registry, GameMapperInterface $gameMapper)
     {
-        parent::__construct($registry, $entityClass);
+        parent::__construct($registry, Game::class);
         $this->gameMapper = $gameMapper;
     }
 
@@ -39,7 +44,7 @@ class GameRepository extends ServiceEntityRepository implements GameRepositoryIn
     {
         $game = $this->findOneBy(['match_id' => $matchId]);
         if($game instanceof Game){
-            return $this->gameMapper->mapToUserDataProvider($game);
+            return $this->gameMapper->mapToGameDataProvider($game);
         }
         return null;
     }
@@ -52,7 +57,7 @@ class GameRepository extends ServiceEntityRepository implements GameRepositoryIn
         $matchList = [];
         foreach ($listOfMatchEntities as $game) {
             if ($game instanceof Game) {
-                $matchList[] = $this->gameMapper->mapToUserDataProvider($game);
+                $matchList[] = $this->gameMapper->mapToGameDataProvider($game);
             }
         }
         return $matchList;

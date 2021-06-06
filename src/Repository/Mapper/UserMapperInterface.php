@@ -1,5 +1,5 @@
 <?php
-
+declare(strict_types=1);
 namespace App\Repository\Mapper;
 
 use App\DataTransferObject\UserDataProvider;
@@ -12,4 +12,6 @@ interface UserMapperInterface
      * @return \App\DataTransferObject\UserDataProvider
      */
     public function mapToUserDataProvider(User $user): UserDataProvider;
+
+    public function mapToGameEntity(UserDataProvider $userDataProvider):User;
 }
