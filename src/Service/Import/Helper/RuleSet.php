@@ -6,6 +6,19 @@ namespace App\Service\Import\Helper;
 
 class RuleSet
 {
-    public const Game = [];
-    public const User = [];
+    public const Game = [
+        'matchId',
+        'team1',
+        'team2',
+        'matchDatetime',
+        'scoreTeam1',
+        'scoreTeam2',
+
+    ];
+    public const User = [
+        'name',
+        'position',
+        'scoreSum',
+        'tips',
+    ];
 }

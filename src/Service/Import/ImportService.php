@@ -65,6 +65,10 @@ class ImportService
         $this->jsonConverter = $jsonConverter;
     }
 
+    /**
+     * @param string $inputJson
+     * @throws \JsonException
+     */
     public function importCalculationList(string $inputJson): void
     {
         try {
@@ -80,6 +84,10 @@ class ImportService
         }
     }
 
+    /**
+     * @param string $inputJson
+     * @throws \JsonException
+     */
     public function importMatchList(string $inputJson): void
     {
         try {

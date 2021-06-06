@@ -12,6 +12,13 @@ class UserValidator implements UserValidatorInterface
      */
     public function validate(array $userArray):bool
     {
+        foreach (RuleSet::User as $key) {
 
+            if (!isset($userArray[$key])) {
+                throw new Exception('Ungültiges JSON');
+            }
+
+        }
+        return true;
     }
 }
