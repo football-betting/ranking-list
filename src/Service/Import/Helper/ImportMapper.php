@@ -32,6 +32,7 @@ class ImportMapper implements ImportMapperInterface
     public function mapToGameDataProvider(array $inputJson):GameDataProvider
     {
         $gameDataProvider = new GameDataProvider();
+        $gameDataProvider->setMatchId($inputJson['matchId']);
         $gameDataProvider->setMatchDatetime($inputJson['matchDatetime']);
         $gameDataProvider->setTeam1($inputJson['team1']);
         $gameDataProvider->setTeam2($inputJson['team2']);

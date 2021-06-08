@@ -42,7 +42,13 @@ class GameRepository extends ServiceEntityRepository implements GameRepositoryIn
      */
     public function getOneByMatchId(string $matchId):?GameDataProvider
     {
-        $game = $this->findOneBy(['match_id' => $matchId]);
+        $game  = $this->createQueryBuilder('c')
+            ->where('c.matchId = :matchId')
+            ->setParameter('matchId', $matchId)
+            ->getQuery()
+            ->getOneOrNullResult();
+
+        //$game = $this->findOneBy(['match_id' => $matchId]);
         if($game instanceof Game){
             return $this->gameMapper->mapToGameDataProvider($game);
         }

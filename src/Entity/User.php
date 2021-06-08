@@ -14,37 +14,6 @@ use Doctrine\ORM\Mapping as ORM;
 class User
 {
     /**
-     * @return mixed
-     */
-    public function getPositionDaily()
-    {
-        return $this->positionDaily;
-    }
-
-    /**
-     * @param mixed $positionDaily
-     */
-    public function setPositionDaily($positionDaily): void
-    {
-        $this->positionDaily = $positionDaily;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getScoreDaily()
-    {
-        return $this->scoreDaily;
-    }
-
-    /**
-     * @param mixed $scoreDaily
-     */
-    public function setScoreDaily($scoreDaily): void
-    {
-        $this->scoreDaily = $scoreDaily;
-    }
-    /**
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
@@ -64,17 +33,7 @@ class User
     /**
      * @ORM\Column(type="integer")
      */
-    private $positionDaily;
-
-    /**
-     * @ORM\Column(type="integer")
-     */
     private $scoreSum;
-
-    /**
-     * @ORM\Column(type="integer")
-     */
-    private $scoreDaily;
 
     /**
      * @ORM\ManyToMany(targetEntity="App\Entity\Tip")

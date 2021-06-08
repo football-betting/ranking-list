@@ -24,6 +24,7 @@ class JsonConverter implements JsonConverterInterface
     public function convertUserJson(string $userJson):array
     {
         return json_decode($userJson, true, 512, JSON_THROW_ON_ERROR);
+
     }
 
 }

@@ -69,18 +69,18 @@ class ImportService
      * @param string $inputJson
      * @throws \JsonException
      */
-    public function importCalculationList(string $inputJson): void
+    public function importCalculationList(string $inputJson): string
     {
         try {
-            $userList = $this->jsonConverter->convertUserJson($inputJson);
-            if($this->userValidator->validate($userList)){
+            $userList = $this->jsonConverter->convertUserJson($inputJson)['data'];
+            if ($this->userValidator->validate($userList)) {
                 foreach ($userList as $user) {
                     $this->userWriteManager->save($this->importMapper->mapToUserDataProvider($user));
                 }
             }
-
+            return '';
         } catch (JsonException $e) {
-
+            return $e->getMessage();
         }
     }
 
@@ -88,18 +88,18 @@ class ImportService
      * @param string $inputJson
      * @throws \JsonException
      */
-    public function importMatchList(string $inputJson): void
+    public function importMatchList(string $inputJson): string
     {
         try {
-            $gameList = $this->jsonConverter->convertGameJson($inputJson);
-            if ($this->gameValidator->validate($gameList)) {
-                foreach ($gameList as $game) {
+            $gameList = $this->jsonConverter->convertGameJson($inputJson)['data'];
+            foreach ($gameList as $game) {
+                if ($this->gameValidator->validate($game)) {
                     $this->gameWriteManager->save($this->importMapper->mapToGameDataProvider($game));
                 }
             }
-
+            return '';
         } catch (JsonException $e) {
-
+            return $e->getMessage();
         }
     }
 }

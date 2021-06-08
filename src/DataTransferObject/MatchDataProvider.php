@@ -5,7 +5,7 @@ namespace App\DataTransferObject;
 /**
  * Auto generated data provider
  */
-final class GameDataProvider extends \Xervice\DataProvider\Business\Model\DataProvider\AbstractDataProvider implements \Xervice\DataProvider\Business\Model\DataProvider\DataProviderInterface
+final class MatchDataProvider extends \Xervice\DataProvider\Business\Model\DataProvider\AbstractDataProvider implements \Xervice\DataProvider\Business\Model\DataProvider\DataProviderInterface
 {
     /** @var int */
     protected $ident;
@@ -40,7 +40,7 @@ final class GameDataProvider extends \Xervice\DataProvider\Business\Model\DataPr
 
     /**
      * @param int $ident
-     * @return GameDataProvider
+     * @return MatchDataProvider
      */
     public function setIdent(int $ident)
     {
@@ -51,7 +51,7 @@ final class GameDataProvider extends \Xervice\DataProvider\Business\Model\DataPr
 
 
     /**
-     * @return GameDataProvider
+     * @return MatchDataProvider
      */
     public function unsetIdent()
     {
@@ -81,7 +81,7 @@ final class GameDataProvider extends \Xervice\DataProvider\Business\Model\DataPr
 
     /**
      * @param string $matchId
-     * @return GameDataProvider
+     * @return MatchDataProvider
      */
     public function setMatchId(string $matchId)
     {
@@ -92,7 +92,7 @@ final class GameDataProvider extends \Xervice\DataProvider\Business\Model\DataPr
 
 
     /**
-     * @return GameDataProvider
+     * @return MatchDataProvider
      */
     public function unsetMatchId()
     {
@@ -122,7 +122,7 @@ final class GameDataProvider extends \Xervice\DataProvider\Business\Model\DataPr
 
     /**
      * @param string $team1
-     * @return GameDataProvider
+     * @return MatchDataProvider
      */
     public function setTeam1(string $team1)
     {
@@ -133,7 +133,7 @@ final class GameDataProvider extends \Xervice\DataProvider\Business\Model\DataPr
 
 
     /**
-     * @return GameDataProvider
+     * @return MatchDataProvider
      */
     public function unsetTeam1()
     {
@@ -163,7 +163,7 @@ final class GameDataProvider extends \Xervice\DataProvider\Business\Model\DataPr
 
     /**
      * @param string $team2
-     * @return GameDataProvider
+     * @return MatchDataProvider
      */
     public function setTeam2(string $team2)
     {
@@ -174,7 +174,7 @@ final class GameDataProvider extends \Xervice\DataProvider\Business\Model\DataPr
 
 
     /**
-     * @return GameDataProvider
+     * @return MatchDataProvider
      */
     public function unsetTeam2()
     {
@@ -204,7 +204,7 @@ final class GameDataProvider extends \Xervice\DataProvider\Business\Model\DataPr
 
     /**
      * @param string $matchDatetime
-     * @return GameDataProvider
+     * @return MatchDataProvider
      */
     public function setMatchDatetime(string $matchDatetime)
     {
@@ -215,7 +215,7 @@ final class GameDataProvider extends \Xervice\DataProvider\Business\Model\DataPr
 
 
     /**
-     * @return GameDataProvider
+     * @return MatchDataProvider
      */
     public function unsetMatchDatetime()
     {
@@ -245,7 +245,7 @@ final class GameDataProvider extends \Xervice\DataProvider\Business\Model\DataPr
 
     /**
      * @param int $scoreTeam1
-     * @return GameDataProvider
+     * @return MatchDataProvider
      */
     public function setScoreTeam1(?int $scoreTeam1 = null)
     {
@@ -256,7 +256,7 @@ final class GameDataProvider extends \Xervice\DataProvider\Business\Model\DataPr
 
 
     /**
-     * @return GameDataProvider
+     * @return MatchDataProvider
      */
     public function unsetScoreTeam1()
     {
@@ -286,7 +286,7 @@ final class GameDataProvider extends \Xervice\DataProvider\Business\Model\DataPr
 
     /**
      * @param int $scoreTeam2
-     * @return GameDataProvider
+     * @return MatchDataProvider
      */
     public function setScoreTeam2(?int $scoreTeam2 = null)
     {
@@ -297,7 +297,7 @@ final class GameDataProvider extends \Xervice\DataProvider\Business\Model\DataPr
 
 
     /**
-     * @return GameDataProvider
+     * @return MatchDataProvider
      */
     public function unsetScoreTeam2()
     {

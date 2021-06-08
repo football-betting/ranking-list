@@ -5,24 +5,32 @@
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="xervice:dataprovider-01 ../vendor/xervice/data-provider/dataprovider.schema.xsd"
 >
-    <DataProvider name="User">
-        <DataElement name="ident" type="int"/>
-        <DataElement name="name" type="string"/>
-        <DataElement name="position" type="int"/>
-        <DataElement name="positionDaily" type="int"/>
-        <DataElement name="scoreSum" type="int"/>
-        <DataElement name="scoreDaily" type="int"/>
-        <DataElement name="tips" type="Tip"/>
+    <DataProvider name="CalculationList">
+        <DataElement name="event" type="string" />
+        <DataElement name="data" type="Calculation[]" singleton="Data"/>
     </DataProvider>
 
-    <DataProvider name="Game">
+    <DataProvider name="Calculation">
+        <DataElement name="matchId" type="string" />
+        <DataElement name="user" type="string" />
+        <DataElement name="score" type="int"/>
+        <DataElement name="tipTeam1" type="int" allownull="true" />
+        <DataElement name="tipTeam2" type="int" allownull="true" />
+    </DataProvider>
+
+    <DataProvider name="MatchList">
+        <DataElement name="event" type="string" />
+        <DataElement name="data" type="Match[]" singleton="Data"/>
+    </DataProvider>
+
+    <DataProvider name="Match">
         <DataElement name="ident" type="int"/>
         <DataElement name="matchId" type="string"/>
         <DataElement name="team1" type="string"/>
         <DataElement name="team2" type="string"/>
         <DataElement name="matchDatetime" type="string"/>
-        <DataElement name="scoreTeam1" type="string" allownull="true"/>
-        <DataElement name="scoreTeam2" type="string" allownull="true"/>
+        <DataElement name="scoreTeam1" type="int" allownull="true"/>
+        <DataElement name="scoreTeam2" type="int" allownull="true"/>
 
     </DataProvider>
 
@@ -37,6 +45,14 @@
     <DataProvider name="Test">
         <DataElement name="ident" type="int"/>
         <DataElement name="name" type="string"/>
+    </DataProvider>
+
+    <DataProvider name="User">
+        <DataElement name="ident" type="int"/>
+        <DataElement name="name" type="string"/>
+        <DataElement name="position" type="int"/>
+        <DataElement name="scoreSum" type="int"/>
+        <DataElement name="tips" type="Tip"/>
     </DataProvider>
 
 </DataProviders>

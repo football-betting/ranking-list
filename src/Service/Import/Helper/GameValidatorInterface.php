@@ -5,7 +5,7 @@ namespace App\Service\Import\Helper;
 interface GameValidatorInterface
 {
     /**
-     * @param array $userArray
+     * @param array $gameArray
      * @return bool
      */
     public function validate(array $gameArray): bool;
