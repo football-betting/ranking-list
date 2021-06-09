@@ -6,6 +6,7 @@ namespace App\Service\Redis;
 
 use App\DataTransferObject\MatchListDataProvider;
 use App\DataTransferObject\CalculationListDataProvider;
+use App\DataTransferObject\UserListDataProvider;
 
 class RedisRepository
 {
@@ -13,6 +14,8 @@ class RedisRepository
 
     private const GAMES = 'game';
     private const RANKING = 'ranking';
+    private const USERS = 'user';
+    private const CALCULATION = 'calculation';
 
     /**
      * @param \App\Service\Redis\RedisService $redisService
@@ -28,7 +31,7 @@ class RedisRepository
      */
     public function saveRanking(string $username, CalculationListDataProvider $calculationListDataProvider): void
     {
-        $this->redisService->set(self::RANKING, json_encode($calculationListDataProvider->toArray()));
+        $this->redisService->set(self::RANKING.$username, json_encode($calculationListDataProvider->toArray()));
     }
 
     /**
@@ -72,5 +75,25 @@ class RedisRepository
         $matchListDataProvider->fromArray(json_decode($games, true));
 
         return $matchListDataProvider;
+    }
+
+    public function getUsers():UserListDataProvider
+    {
+        $users = $this->redisService->get(self::USERS);
+
+        $userListDataProvider = new UserListDataProvider();
+        $userListDataProvider->fromArray(json_decode($users, true));
+
+        return $userListDataProvider;
+    }
+
+    public function getCalculationPerUser(string $username):CalculationListDataProvider
+    {
+        $calculation = $this->redisService->getKeys(self::CALCULATION.$username);
+
+        $calculationListDataProvider = new CalculationListDataProvider();
+        $calculationListDataProvider->fromArray(json_decode($calculation, true));
+
+        return $calculationListDataProvider;
     }
 }

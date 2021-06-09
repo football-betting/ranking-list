@@ -1,5 +1,5 @@
 <?php
-
+declare(strict_types=1);
 
 namespace App\Ranking;
 
@@ -8,8 +8,10 @@ use App\DataTransferObject\RankingListDataProvider;
 
 class rankingUserService
 {
-
-    private $calculateScore;
+    /**
+     * @var \App\Ranking\CalculateScore $calculateScore
+     */
+    private CalculateScore $calculateScore;
 
     public function __construct(CalculateScore $calculateScore)
     {
@@ -41,22 +43,21 @@ class rankingUserService
     }
 
 
-    private function quick_sort($my_array)
+    private function quick_sort(Array $arrayRankingList)
     {
         $loe = $gt = array();
-        if (count($my_array) < 2) {
-            return $my_array;
+        if (count($arrayRankingList) < 2) {
+            return $arrayRankingList;
         }
-        $pivot_key = key($my_array);
-        $pivot = array_shift($my_array);
-        foreach ($my_array as $val) {
-            if ($val <= $pivot) {
-                $loe[] = $val;
-            } elseif ($val > $pivot) {
-                $gt[] = $val;
+        $pivot_key = key($arrayRankingList);
+        $pivot = array_shift($arrayRankingList);
+        foreach ($arrayRankingList as $arrayRankingEntry) {
+            if ($arrayRankingEntry['scoreSum'] <= $pivot['scoreSum']) {
+                $loe[] = $arrayRankingEntry;
+            } elseif ($arrayRankingEntry['scoreSum'] > $pivot['scoreSum']) {
+                $gt[] = $arrayRankingEntry;
             }
         }
-        return array_merge(quick_sort($loe), array($pivot_key => $pivot), quick_sort($gt));
+        return array_merge($this->quick_sort($loe), array($pivot_key => $pivot), $this->quick_sort($gt));
     }
-}
 }

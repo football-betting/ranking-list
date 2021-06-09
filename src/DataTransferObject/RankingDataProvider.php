@@ -16,7 +16,7 @@ final class RankingDataProvider extends \Xervice\DataProvider\Business\Model\Dat
     /** @var int */
     protected $scoreSum;
 
-    /** @var \App\DataTransferObject\CalculationDataProvider */
+    /** @var \App\DataTransferObject\CalculationListDataProvider */
     protected $tips;
 
 
@@ -144,19 +144,19 @@ final class RankingDataProvider extends \Xervice\DataProvider\Business\Model\Dat
 
 
     /**
-     * @return \App\DataTransferObject\CalculationDataProvider
+     * @return \App\DataTransferObject\CalculationListDataProvider
      */
-    public function getTips(): CalculationDataProvider
+    public function getTips(): CalculationListDataProvider
     {
         return $this->tips;
     }
 
 
     /**
-     * @param \App\DataTransferObject\CalculationDataProvider $tips
+     * @param \App\DataTransferObject\CalculationListDataProvider $tips
      * @return RankingDataProvider
      */
-    public function setTips(CalculationDataProvider $tips)
+    public function setTips(CalculationListDataProvider $tips)
     {
         $this->tips = $tips;
 
@@ -225,7 +225,7 @@ final class RankingDataProvider extends \Xervice\DataProvider\Business\Model\Dat
             'name' => 'tips',
             'allownull' => false,
             'default' => '',
-            'type' => '\\App\\DataTransferObject\\CalculationDataProvider',
+            'type' => '\\App\\DataTransferObject\\CalculationListDataProvider',
             'is_collection' => false,
             'is_dataprovider' => true,
             'isCamelCase' => false,

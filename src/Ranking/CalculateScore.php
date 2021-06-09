@@ -1,5 +1,5 @@
 <?php
-
+declare(strict_types=1);
 
 namespace App\Ranking;
 
@@ -10,21 +10,25 @@ use App\DataTransferObject\RankingDataProvider;
 use App\DataTransferObject\RankingListDataProvider;
 use App\DataTransferObject\UserDataProvider;
 use App\DataTransferObject\UserListDataProvider;
+use App\Service\Redis\RedisRepository;
 
 class CalculateScore
 {
-    public function __construct(){
+    private RedisRepository $redisRepository;
 
+    public function __construct(RedisRepository $redisRepository){
+        $this->redisRepository = $redisRepository;
     }
+
     public function calculateScoreList():RankingListDataProvider
     {
         $unsortedRankingList = new RankingListDataProvider();
-        //getUserList from Redice
+        $userDataProviderList = $this->redisRepository->getUsers();
         foreach ($userDataProviderList as $user){
             $singleRanking = new RankingDataProvider();
             $singleRanking->setUser($user->getName());
 
-            //getcalculationList of specific user
+            $calculationListDataProvider = $this->redisRepository->getCalculationPerUser($user->getName());
             foreach ($calculationListDataProvider as $calculation){
                 $singleRanking->setScoreSum($singleRanking->getScoreSum()+$calculation->getScore());
             }
