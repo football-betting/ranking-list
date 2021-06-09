@@ -22,7 +22,7 @@ class GameMessageHandlerTest extends KernelTestCase
         $this->entityManager = self::$container
             ->get('doctrine.dbal.default_connection');
 
-        $this->userList = self::$container->get(GameMessageHandler::class);
+        $this->gameMessageHandler = self::$container->get(GameMessageHandler::class);
     }
 
     protected function tearDown(): void
@@ -45,7 +45,7 @@ class GameMessageHandlerTest extends KernelTestCase
         $matchListDataProvider = new MatchListDataProvider();
         $matchListDataProvider->addData($match);
 
-        $userList = $this->userList;
+        $userList = $this->gameMessageHandler;
         $userList($matchListDataProvider);
 
         $message = $this->getMessageInfo();

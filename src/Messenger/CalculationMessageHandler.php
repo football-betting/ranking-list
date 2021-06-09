@@ -5,6 +5,7 @@ namespace App\Messenger;
 
 
 use App\DataTransferObject\CalculationListDataProvider;
+use App\Ranking\CalculateScore;
 use App\Service\Redis\RedisRepository;
 use App\Service\Redis\RedisService;
 use Symfony\Component\Messenger\MessageBusInterface;
@@ -15,6 +16,8 @@ class CalculationMessageHandler
 
     private RedisService $redisService;
 
+    private CalculateScore $calculateScore;
+
     private MessageBusInterface $messageBus;
 
     /**
@@ -22,15 +25,16 @@ class CalculationMessageHandler
      * @param \App\Service\Redis\RedisService $redisService
      * @param \Symfony\Component\Messenger\MessageBusInterface $messageBus
      */
-    public function __construct(RedisService $redisService, MessageBusInterface $messageBus)
+    public function __construct(RedisService $redisService, MessageBusInterface $messageBus, CalculateScore $calculateScore)
     {
         $this->redisService = $redisService;
         $this->messageBus = $messageBus;
+        $this->calculateScore = $calculateScore;
     }
 
     public function __invoke(CalculationListDataProvider $calculationListDataProvider)
     {
-
+        $this->calculateScore->calculateScoreList(new CalculationListDataProvider());
         $this->redisService->set('test1', json_encode($calculationListDataProvider->toArray()));
 
         $info = $this->redisService->get('test1');

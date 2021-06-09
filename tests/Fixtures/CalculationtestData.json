@@ -1,21 +1,47 @@
 {
-  "event":"match",
+  "event":"calculation",
   "data":[
     {
-      "matchId":"2020-06-16:2100:FR-DE",
-      "team1":"FR",
-      "team2":"DE",
-      "matchDatetime":"2020-06-16 21:00",
-      "scoreTeam1":1,
-      "scoreTeam2":4
+      "matchId": "2020-06-16:2100-FR-DE",
+      "user" : "ninja",
+      "score": 2,
+      "tipTeam1": 2,
+      "tipTeam2": 3
     },
     {
-      "matchId":"2020-06-20:1800-PT-DE",
-      "team1":"PT",
-      "team2":"DE",
-      "matchDatetime":"2020-06-20 18:00",
-      "scoreTeam1":null,
-      "scoreTeam2":null
+      "matchId": "2020-06-16:2100-PL-IT",
+      "user" : "rockstar",
+      "score": 0,
+      "tipTeam1": 0,
+      "tipTeam2": 4
+    },
+    {
+      "matchId": "2020-16-16:2100-FR-DE",
+      "user" : "ninja",
+      "score": 2,
+      "tipTeam1": 2,
+      "tipTeam2": 3
+    },
+    {
+      "matchId": "2020-16-16:2100-PL-IT",
+      "user" : "rockstar",
+      "score": 2,
+      "tipTeam1": 0,
+      "tipTeam2": 4
+    },
+    {
+      "matchId": "2020-26-16:2100-FR-DE",
+      "user" : "ninja",
+      "score": 2,
+      "tipTeam1": 2,
+      "tipTeam2": 3
+    },
+    {
+      "matchId": "2020-26-16:2100-PL-IT",
+      "user" : "rockstar",
+      "score": 1,
+      "tipTeam1": 0,
+      "tipTeam2": 4
     }
   ]
 }

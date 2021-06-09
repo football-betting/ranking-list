@@ -5,6 +5,18 @@
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="xervice:dataprovider-01 ../vendor/xervice/data-provider/dataprovider.schema.xsd"
 >
+    <DataProvider name="RankingList">
+        <DataElement name="event" type="string" />
+        <DataElement name="data" type="Ranking[]" singleton="Data"/>
+    </DataProvider>
+
+    <DataProvider name="Ranking">
+        <DataElement name="user" type="string" />
+        <DataElement name="position" type="int"/>
+        <DataElement name="scoreSum" type="int"/>
+        <DataElement name="tips" type="CalculationList"/>
+    </DataProvider>
+
     <DataProvider name="CalculationList">
         <DataElement name="event" type="string" />
         <DataElement name="data" type="Calculation[]" singleton="Data"/>
