@@ -20,15 +20,16 @@ class CalculateScore
         $this->redisRepository = $redisRepository;
     }
 
-    public function calculateScoreList():RankingListDataProvider
+    public function calculateScoreList(CalculationListDataProvider $calculationListDataProvider):RankingListDataProvider
     {
         $unsortedRankingList = new RankingListDataProvider();
-        $userDataProviderList = $this->redisRepository->getUsers();
+        $userDataProviderList = $this->getUserFromList($calculationListDataProvider->toArray());
         foreach ($userDataProviderList as $user){
             $singleRanking = new RankingDataProvider();
             $singleRanking->setUser($user->getName());
 
-            $calculationListDataProvider = $this->redisRepository->getCalculationPerUser($user->getName());
+            $calculationListDataProvider = new CalculationListDataProvider();
+            $calculationListDataProvider->fromArray($this->partCalculationListInUserSection($calculationListDataProvider->toArray(),$user));
             foreach ($calculationListDataProvider as $calculation){
                 $singleRanking->setScoreSum($singleRanking->getScoreSum()+$calculation->getScore());
             }
@@ -36,6 +37,27 @@ class CalculateScore
             $unsortedRankingList->addData($singleRanking);
         }
         return $unsortedRankingList;
+    }
+
+    private function getUserFromList(array $calculationList): array
+    {
+        $userList = [];
+        foreach ($calculationList as $entry){
+            if(!in_array($entry['user'], $userList, true)){
+                $userList[] = $entry ['user'];
+            }
+        }
+        return $userList;
+    }
+
+    private function partCalculationListInUserSection(array $calculationList, String $username):array{
+        $result = [];
+        foreach ($calculationList as $calculation){
+            if($calculation['user'] === $username){
+                $result [] = $calculation;
+            }
+        }
+        return $result;
     }
 
 }
