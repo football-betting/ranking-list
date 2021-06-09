@@ -23,9 +23,13 @@ class rankingUserService
         $unsortedRankingList = $this->calculateScore->calculateScoreList();
         $position = 1;
         $jumper = 0;
-        $sortedRankingList = new RankingListDataProvider();
-        $sortedRankingList->fromArray($this->quick_sort($unsortedRankingList->toArray()));
-        foreach ($unsortedRankingList->getData() as $key => $rank) {
+
+        $sortedRankingList = $unsortedRankingList->toArray();
+        usort( $sortedRankingList, function ($a, $b) {
+            return ($a->getScoreSum() <=> $b->getScoreSum()) * -1;
+        });
+
+        foreach ($sortedRankingList as $key => $rank) {
             if ($key + 1 < count($unsortedRankingList->getData())) {
                 if ($rank[$key]->getScoreSume() > $rank[$key + 1]->getScoreSum()) {
                     $rank[$key]->setPosition($position);
@@ -43,21 +47,4 @@ class rankingUserService
     }
 
 
-    private function quick_sort(Array $arrayRankingList)
-    {
-        $loe = $gt = array();
-        if (count($arrayRankingList) < 2) {
-            return $arrayRankingList;
-        }
-        $pivot_key = key($arrayRankingList);
-        $pivot = array_shift($arrayRankingList);
-        foreach ($arrayRankingList as $arrayRankingEntry) {
-            if ($arrayRankingEntry['scoreSum'] <= $pivot['scoreSum']) {
-                $loe[] = $arrayRankingEntry;
-            } elseif ($arrayRankingEntry['scoreSum'] > $pivot['scoreSum']) {
-                $gt[] = $arrayRankingEntry;
-            }
-        }
-        return array_merge($this->quick_sort($loe), array($pivot_key => $pivot), $this->quick_sort($gt));
-    }
 }
