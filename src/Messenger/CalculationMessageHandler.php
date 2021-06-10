@@ -5,9 +5,13 @@ namespace App\Messenger;
 
 
 use App\DataTransferObject\CalculationListDataProvider;
+use App\DataTransferObject\MatchListDataProvider;
+use App\DataTransferObject\RankingTransportListDataProvider;
 use App\Ranking\CalculateScore;
+use App\Ranking\RankingUserService;
 use App\Service\Redis\RedisRepository;
 use App\Service\Redis\RedisService;
+use Nette\Utils\JsonException;
 use Symfony\Component\Messenger\MessageBusInterface;
 
 class CalculationMessageHandler
@@ -16,7 +20,10 @@ class CalculationMessageHandler
 
     private RedisService $redisService;
 
-    private CalculateScore $calculateScore;
+    /**
+     * @var \App\Ranking\RankingUserService $rankingUserService
+     */
+    private RankingUserService $rankingUserService;
 
     private MessageBusInterface $messageBus;
 
@@ -25,29 +32,30 @@ class CalculationMessageHandler
      * @param \App\Service\Redis\RedisService $redisService
      * @param \Symfony\Component\Messenger\MessageBusInterface $messageBus
      */
-    public function __construct(RedisService $redisService, MessageBusInterface $messageBus, CalculateScore $calculateScore)
+    public function __construct(RedisService $redisService, MessageBusInterface $messageBus, RankingUserService $rankingUserService)
     {
         $this->redisService = $redisService;
         $this->messageBus = $messageBus;
-        $this->calculateScore = $calculateScore;
+        $this->rankingUserService = $rankingUserService;
     }
+
 
     public function __invoke(CalculationListDataProvider $calculationListDataProvider)
     {
-        $this->calculateScore->calculateScoreList(new CalculationListDataProvider());
-        $this->redisService->set('test1', json_encode($calculationListDataProvider->toArray()));
+        $games = new MatchListDataProvider();
+        $rankingTransportList = new RankingTransportListDataProvider();
+        $rankingList = $this->rankingUserService->createRankingList($calculationListDataProvider);
 
-        $info = $this->redisService->get('test1');
+        try{
+            $games->fromArray(json_decode($this->redisService->get('games'), true, 512, JSON_THROW_ON_ERROR));
 
-        $test = new TestDataProvider();
-        $test->setIdent(1);
-        $test->setName($info);
+        }catch (\JsonException $e){
 
-        $this->messageBus->dispatch($test);
-        //$this->redisRepository->saveGames($matchListDataProvider);
-        //$this->userList->calculate();
+        }
 
-
+        $rankingTransportList->setGames($games);
+        $rankingTransportList->setRankings($rankingList);
+        $this->messageBus->dispatch($rankingList);
     }
 
 }

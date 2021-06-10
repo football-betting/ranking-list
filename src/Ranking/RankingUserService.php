@@ -4,23 +4,25 @@ declare(strict_types=1);
 namespace App\Ranking;
 
 
+use App\DataTransferObject\CalculationListDataProvider;
 use App\DataTransferObject\RankingListDataProvider;
+use function Pipeline\fromArray;
 
-class rankingUserService
+class RankingUserService
 {
     /**
      * @var \App\Ranking\CalculateScore $calculateScore
      */
     private CalculateScore $calculateScore;
 
-    public function __construct(CalculateScore $calculateScore)
+    public function __construct(CalculateScore $calculateScore, )
     {
         $this->calculateScore = $calculateScore;
     }
 
-    public function createRankingList(): RankingListDataProvider
+    public function createRankingList(CalculationListDataProvider $calculationListDataProvider): RankingListDataProvider
     {
-        $unsortedRankingList = $this->calculateScore->calculateScoreList();
+        $unsortedRankingList = $this->calculateScore->calculateScoreList($calculationListDataProvider);
         $position = 1;
         $jumper = 0;
 
@@ -29,11 +31,12 @@ class rankingUserService
             return ($a->getScoreSum() <=> $b->getScoreSum()) * -1;
         });
 
+
         foreach ($sortedRankingList as $key => $rank) {
             if ($key + 1 < count($unsortedRankingList->getData())) {
                 if ($rank[$key]->getScoreSume() > $rank[$key + 1]->getScoreSum()) {
                     $rank[$key]->setPosition($position);
-                    $position += $jumper;
+                    $position += $jumper +1 ;
                     $jumper = 0;
                 } else {
                     $rank[$key]->setPosition($position);
@@ -43,7 +46,10 @@ class rankingUserService
                 $rank[$key]->setPosition($position);
             }
         }
-        return $sortedRankingList;
+        $finalRanking = new RankingListDataProvider();
+        $finalRanking->fromArray($sortedRankingList);
+
+        return $finalRanking;
     }
 
 

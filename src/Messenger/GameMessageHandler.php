@@ -26,24 +26,13 @@ class GameMessageHandler
     public function __construct(RedisService $redisService, MessageBusInterface $messageBus)
     {
         $this->redisService = $redisService;
-        $this->messageBus = $messageBus;
     }
 
 
     public function __invoke(MatchListDataProvider $matchListDataProvider)
     {
 
-        $this->redisService->set('test1', json_encode($matchListDataProvider->toArray()));
-
-        $info = $this->redisService->get('test1');
-
-        $test = new TestDataProvider();
-        $test->setIdent(1);
-        $test->setName($info);
-
-        $this->messageBus->dispatch($test);
-        //$this->redisRepository->saveGames($matchListDataProvider);
-        //$this->userList->calculate();
+        $this->redisService->set('games', json_encode($matchListDataProvider->toArray()));
 
 
     }
