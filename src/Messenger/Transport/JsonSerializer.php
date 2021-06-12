@@ -30,7 +30,7 @@ class JsonSerializer implements SerializerInterface
             return new Envelope($calculationDataProvider);
         }
 
-        if ($data['event'] === "match.to.ranking") {
+        if ($data['event'] === "match.to.rating") {
             // schema validation
             $matchListDataProvider = new MatchListDataProvider();
             $matchListDataProvider->fromArray($data);
