@@ -3,10 +3,8 @@ declare(strict_types=1);
 
 namespace App\Ranking;
 
-
 use App\DataTransferObject\CalculationListDataProvider;
 use App\DataTransferObject\RankingListDataProvider;
-use function Pipeline\fromArray;
 
 class RankingUserService
 {
@@ -15,7 +13,7 @@ class RankingUserService
      */
     private CalculateScore $calculateScore;
 
-    public function __construct(CalculateScore $calculateScore, )
+    public function __construct(CalculateScore $calculateScore)
     {
         $this->calculateScore = $calculateScore;
     }
