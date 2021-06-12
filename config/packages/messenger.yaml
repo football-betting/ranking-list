@@ -9,7 +9,7 @@ framework:
             # async: '%env(MESSENGER_TRANSPORT_DSN)%'
             # failed: 'doctrine://default?queue_name=failed'
             # sync: 'sync://'
-            ranking.to.app:  "%env(RANKING_TO_APP)%"
+            rating.to.app:  "%env(RANKING_TO_APP)%"
             match.to.rating: "%env(MATCH_TO_RATING)%"
             calculation.to.rating: "%env(CALCULATION_TO_RATING)%"
 
