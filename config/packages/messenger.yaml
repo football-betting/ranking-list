@@ -14,8 +14,8 @@ framework:
             calculation.to.rating: "%env(CALCULATION_TO_RATING)%"
 
         routing:
-            'App\DataTransferObject\TestDataProvider':
-                - ranking.to.app
+            'App\DataTransferObject\RankingListDataProvider':
+                - rating.to.app
 
             'App\DataTransferObject\MatchListDataProvider':
                 - match.to.rating
