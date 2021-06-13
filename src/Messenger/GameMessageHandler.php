@@ -23,7 +23,7 @@ class GameMessageHandler
      * @param \App\Service\Redis\RedisService $redisService
      * @param \Symfony\Component\Messenger\MessageBusInterface $messageBus
      */
-    public function __construct(RedisService $redisService, MessageBusInterface $messageBus)
+    public function __construct(RedisService $redisService)
     {
         $this->redisService = $redisService;
     }

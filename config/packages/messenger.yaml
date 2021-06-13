@@ -16,11 +16,7 @@ framework:
         routing:
             'App\DataTransferObject\RankingListDataProvider':
                 - rating.to.app
-
             'App\DataTransferObject\MatchListDataProvider':
                 - match.to.rating
-
             'App\DataTransferObject\CalculationListDataProvider':
                 - calculation.to.rating
-            # Route your messages to the transports
-            # 'App\Message\YourMessage': async
