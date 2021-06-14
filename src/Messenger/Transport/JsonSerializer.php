@@ -27,6 +27,9 @@ class JsonSerializer implements SerializerInterface
 
             $calculationDataProvider = new CalculationListDataProvider();
             $calculationDataProvider->fromArray($data);
+
+            $calculationDataProvider->setEvent($data['event']);
+
             return new Envelope($calculationDataProvider);
         }
 
@@ -34,6 +37,7 @@ class JsonSerializer implements SerializerInterface
             // schema validation
             $matchListDataProvider = new MatchListDataProvider();
             $matchListDataProvider->fromArray($data);
+            $matchListDataProvider->setEvent($data['event']);
 
             return new Envelope($matchListDataProvider);
         }
