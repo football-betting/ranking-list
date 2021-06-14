@@ -31,9 +31,6 @@ class GameMessageHandler
 
     public function __invoke(MatchListDataProvider $matchListDataProvider)
     {
-
         $this->redisService->set('games', json_encode($matchListDataProvider->toArray()));
-
-
     }
 }

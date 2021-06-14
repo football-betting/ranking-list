@@ -23,6 +23,7 @@ class JsonSerializer implements SerializerInterface
             throw new \LogicException('incorect message: event');
         }
 
+
         if ($data['event'] === "calculation.to.ranking") {
 
             $calculationDataProvider = new CalculationListDataProvider();
@@ -61,6 +62,10 @@ class JsonSerializer implements SerializerInterface
             $eventMessage = [
                 'data' => $message->toArray(),
             ];
+        }
+
+        if (method_exists($message, 'getEvent')) {
+            $eventMessage['event'] = $message->getEvent();
         }
 
         $stamps = $envelope->all();
