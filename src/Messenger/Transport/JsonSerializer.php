@@ -24,7 +24,7 @@ class JsonSerializer implements SerializerInterface
         }
 
 
-        if ($data['event'] === "calculation.to.ranking") {
+        if ($data['event'] === "calculation.to.rating") {
 
             $calculationDataProvider = new CalculationListDataProvider();
             $calculationDataProvider->fromArray($data);
